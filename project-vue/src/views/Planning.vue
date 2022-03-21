@@ -1,10 +1,4 @@
 <template>
-      <div class="app-main-layout">
-
-    <main class="app-content">
-      <div class="app-page">
-
-
 <div>
   <div class="page-title">
     <h3>Планирование</h3>
@@ -25,9 +19,5 @@
       </div>
     </div>
   </section>
-</div>
-
-</div>
-</main>
 </div>
 </template>

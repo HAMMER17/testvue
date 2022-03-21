@@ -1,7 +1,4 @@
 <template>
-      <div class="app-main-layout">
-<main class="app-content">
-      <div class="app-page">
 
 <div>
   <div class="page-title">
@@ -65,9 +62,5 @@
       <i class="material-icons right">send</i>
     </button>
   </form>
-</div>
-
-</div>
-</main>
 </div>
 </template>

@@ -1,6 +1,4 @@
 <template>
-<main class="app-content">
-  <div class="app-page">
 <div>
   <div class="page-title">
     <h3>Счет</h3>
@@ -48,6 +46,4 @@
     </div>
   </div>
 </div>
-</div>
-</main>
 </template>

@@ -1,5 +1,5 @@
 <template>
-<ul class="sidenav app-sidenav open" :class="{open: value}">
+<ul class="sidenav app-sidenav open">
     <router-link
     v-for="link in links"
     :key="link.url"

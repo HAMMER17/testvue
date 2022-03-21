@@ -1,7 +1,4 @@
 <template>
-      <div class="app-main-layout">
-<main class="app-content">
-      <div class="app-page">
 <div>
   <div>
     <div class="breadcrumb-wrap">
@@ -24,8 +21,5 @@
       </div>
     </div>
   </div>
-</div>
-</div>
-</main>
 </div>
 </template>

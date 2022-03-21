@@ -1,5 +1,4 @@
 <template>
-<main class="app-content">
   <div class="page-title">
     <h3>История записей</h3>
   </div>
@@ -39,5 +38,4 @@
       </tbody>
     </table>
   </section>
-</main>
 </template>

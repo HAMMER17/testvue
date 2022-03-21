@@ -1,9 +1,4 @@
 <template>
-     <div class="app-main-layout">
-
-    <main class="app-content">
-      <div class="app-page">
-
 <div>
   <div class="page-title">
     <h3>Профиль</h3>
@@ -25,9 +20,5 @@
       <i class="material-icons right">send</i>
     </button>
   </form>
-</div>
-
-</div>
-</main>
 </div>
 </template>

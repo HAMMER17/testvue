@@ -1,5 +1,5 @@
 <template>
-  <main class="app-content" :class="{full: !isOpen}">
+  <main class="app-content" :class="{ full: !isOpen }">
       <div class="app-page">
         <router-view />
       </div>
