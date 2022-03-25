@@ -60,14 +60,6 @@ export default {
     email: { required, email },
     password: { required, minLength: minLength(4) },
   },
-  // methods: {
-  //   submit() {
-  //     this.$v.$touch()
-  //     if (this.$v.$invalid) {
-  //       this.$router.push('/')
-  //       return;
-  //     }
-  //   }
     methods: {
     submit() {
       this.v$.$touch()
