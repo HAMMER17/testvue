@@ -28,7 +28,7 @@
               </li>
               <li class="divider" tabindex="-1"></li>
               <li>
-                <a href="#" class="black-text" @click.prevent="logout">
+                <a href="/login" class="black-text" @click.prevent="logout">
                   <i class="material-icons">assignment_return</i>Выйти
                 </a>
               </li>
@@ -46,11 +46,6 @@ export default {
    interval: null,
    drop: null,
   }),
-  methods: {
-    logout(){
-      this.$router.push('/login')
-    }
-  },
   mounted() {
   this.interval = setInterval(() => {
       this.date = new Date()
@@ -77,7 +72,10 @@ export default {
         }
 
         return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
-      }
+      },
+      logout(){
+      this.$router.push('/login')
+    },
 }
 }
 </script>
