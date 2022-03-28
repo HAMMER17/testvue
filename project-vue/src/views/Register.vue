@@ -62,6 +62,9 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { email, required, minLength } from '@vuelidate/validators';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from '../store/auth';
+const auth = getAuth(app)
 
 export default {
   setup () {
@@ -83,13 +86,19 @@ export default {
       agree: { checked: v => v },
   },
   methods: {
-    submit() {
+   async submit() {
+     const email2 = this.email
+     const password2 = this.password
+     const name2 = this.name
+     
+     console.log(email2, password2)
+     const userCredential = await createUserWithEmailAndPassword(auth, email2, password2, name2)
+      console.log(userCredential.user)
       this.v$.$touch()
       if(this.v$.$invalid) {
         this.v$.$touch()
         return;
       }
-      console.log(this.email, this.password, this.name)
       this.$router.push('/')
     }
   }

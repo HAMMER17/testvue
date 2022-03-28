@@ -22,10 +22,7 @@
         <div>
           <button
             class="btn waves-effect waves-light auth-submit"
-            type="submit"
-
-            :disabled="submitStatus === 'PENDING'"
-          >
+            type="submit">
             Войти
             <i class="material-icons right">send</i>
           </button>
@@ -43,6 +40,10 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { email, required, minLength } from '@vuelidate/validators';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from 'firebase/auth'
+import { app } from '../store/auth';
+const auth = getAuth(app)
 
 export default {
   setup () {
@@ -53,7 +54,6 @@ export default {
     return {
       email: '',
       password: '',
-      submitStatus: null,
   }
   },
   validations: {
@@ -61,18 +61,18 @@ export default {
     password: { required, minLength: minLength(4) },
   },
     methods: {
-    submit() {
-      this.v$.$touch()
+   async submit() {
+     const email2 = this.email
+     const password2 = this.password
+     console.log(email2, password2)
+     const userCredential = await signInWithEmailAndPassword(auth, email2, password2)
+      console.log(userCredential.user)
       if (this.v$.$invalid) {
-       console.log(this.submitStatus)
-      } else {
-        console.log(this.email, this.password)
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = this.$router.push('/')
-        }, 1000)
+        this.v$.$touch()
+        this.$router.push('/') 
+        } 
+          // this.$router.push('/')   
       }
     }
   }
-}
 </script>
