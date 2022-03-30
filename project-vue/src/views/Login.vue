@@ -3,6 +3,7 @@
     <form class="card auth-card" @submit.prevent="submit">
       <div class="card-content">
         <span class="card-title">Домашняя бухгалтерия</span>
+        
           <div class="input-field">
           <input id="email" type="email" v-model="email" @blur="v$.email.$touch" />
           <label for="email">Email</label>
@@ -40,11 +41,11 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { email, required, minLength } from '@vuelidate/validators';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { getAuth } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { app } from '../store/auth';
 const auth = getAuth(app)
 
+M.toast({html: 'Вы вышли из системы!'});
 export default {
   setup () {
     return { v$: useVuelidate() }
@@ -60,19 +61,23 @@ export default {
     email: { required, email },
     password: { required, minLength: minLength(4) },
   },
-    methods: {
+  methods: {
    async submit() {
-     const email2 = this.email
-     const password2 = this.password
-     console.log(email2, password2)
-     const userCredential = await signInWithEmailAndPassword(auth, email2, password2)
-      console.log(userCredential.user)
+     const addEmail = this.email
+     const addPassword = this.password
+     const userCredential = await signInWithEmailAndPassword(auth, addEmail, addPassword)
+      console.log(userCredential)
       if (this.v$.$invalid) {
         this.v$.$touch()
+        return;
+        }
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            console.log(`Здравствуйте ${user.email}`)
+          }
+       });
         this.$router.push('/') 
-        } 
-          // this.$router.push('/')   
       }
     }
-  }
+  };
 </script>

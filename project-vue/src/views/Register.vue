@@ -1,5 +1,5 @@
 <template>
-    <div class="grey darken-1 empty-layout">
+<div class="grey darken-1 empty-layout">
 <form class="card auth-card" @submit.prevent="submit">
   <div class="card-content">
     <span class="card-title">Домашняя бухгалтерия</span>
@@ -63,7 +63,9 @@
 import useVuelidate from '@vuelidate/core';
 import { email, required, minLength } from '@vuelidate/validators';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from 'firebase/database';
 import { app } from '../store/auth';
+
 const auth = getAuth(app)
 
 export default {
@@ -87,19 +89,23 @@ export default {
   },
   methods: {
    async submit() {
-     const email2 = this.email
-     const password2 = this.password
-     const name2 = this.name
+     const emailAdd = this.email
+     const passwordAdd = this.password
+     const nameAdd = this.name
      
-     console.log(email2, password2)
-     const userCredential = await createUserWithEmailAndPassword(auth, email2, password2, name2)
+     const userCredential = await createUserWithEmailAndPassword(auth, emailAdd, passwordAdd, nameAdd)
       console.log(userCredential.user)
       this.v$.$touch()
       if(this.v$.$invalid) {
         this.v$.$touch()
-        return;
       }
-      this.$router.push('/')
+  const db = getDatabase(app);
+ await set(ref(db, 'users/' + `${this.name}`), {
+    email: this.email,
+    password:this.password,
+    name:this.name
+  });
+this.$router.push('/');
     }
   }
 };
