@@ -67,7 +67,7 @@ import { getDatabase, ref, set } from 'firebase/database';
 import { app } from '../store/auth';
 
 const auth = getAuth(app)
-
+const db = getDatabase(app);
 export default {
   setup () {
     return { v$: useVuelidate() }
@@ -98,15 +98,13 @@ export default {
       this.v$.$touch()
       if(this.v$.$invalid) {
         this.v$.$touch()
-      }
-  const db = getDatabase(app);
- await set(ref(db, 'users/' + `${this.name}`), {
-    email: this.email,
-    password:this.password,
-    name:this.name
-  });
-this.$router.push('/');
-    }
-  }
+      };
+    await set(ref(db, 'users/' + `${userCredential.user.uid}` + '/info'), {
+    name: this.name,
+    build: 100000,
+    });
+    this.$router.push('/');
+    },
+  },
 };
 </script>

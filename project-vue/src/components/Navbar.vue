@@ -5,7 +5,7 @@
           <a href="#" @click.prevent="$emit('toggle')">
             <i class="material-icons black-text">dehaze</i>
           </a>
-          <span class="black-text">{{dateFilter('datetime')}}</span>
+          <span class="black-text">{{ dateFilter('datetime') }}</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
@@ -16,7 +16,7 @@
               data-target="dropdown"
               ref="drop"
             >
-              USER NAME
+              HAMMER
               <i class="material-icons right">arrow_drop_down</i>
             </a>
 
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+
 export default {
   data:() => ({
    date: new Date(),
@@ -52,7 +53,7 @@ export default {
     }, 1000)
     M.Dropdown.init(this.$refs.drop, {
       constrainWidth: false
-    })
+    }) 
   },
   beforeDestroy() {
    this.drop = clearInterval(this.interval)
@@ -76,6 +77,6 @@ export default {
       logout(){
       this.$router.push('/login')
     },
-}
-}
+},
+};
 </script>

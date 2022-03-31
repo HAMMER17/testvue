@@ -26,6 +26,6 @@ export default {
   }),
   components: {
     NavBar, SideBar
-  }
+  },
 }
 </script>

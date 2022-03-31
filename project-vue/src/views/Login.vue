@@ -43,6 +43,7 @@ import useVuelidate from '@vuelidate/core';
 import { email, required, minLength } from '@vuelidate/validators';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { app } from '../store/auth';
+
 const auth = getAuth(app)
 
 M.toast({html: 'Вы вышли из системы!'});
@@ -70,14 +71,14 @@ export default {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return;
-        }
+        };
         onAuthStateChanged(auth, (user) => {
           if (user) {
             console.log(`Здравствуйте ${user.email}`)
-          }
+          };
        });
         this.$router.push('/') 
-      }
-    }
+      },
+    },
   };
 </script>
